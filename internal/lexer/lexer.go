@@ -29,11 +29,11 @@ func (l *Lexer) readChar() {
 }
 
 func (l *Lexer) peakChar() byte {
-  if l.readPosition >= len(l.input) {
-    return 0
-  }
+	if l.readPosition >= len(l.input) {
+		return 0
+	}
 
-  return l.input[l.readPosition]
+	return l.input[l.readPosition]
 }
 
 func createToken(t token.TokenType, l byte) *token.Token {
@@ -50,12 +50,12 @@ func (l *Lexer) NextToken() *token.Token {
 
 	switch l.char {
 	case '=':
-    if l.peakChar() == '=' {
-      t = &token.Token{Type: token.EQ, Literal: "=="}
-      l.readChar()
-    } else {
-		  t = createToken(token.ASSIGN, l.char)
-    }
+		if l.peakChar() == '=' {
+			t = &token.Token{Type: token.EQ, Literal: "=="}
+			l.readChar()
+		} else {
+			t = createToken(token.ASSIGN, l.char)
+		}
 	case '+':
 		t = createToken(token.PLUS, l.char)
 	case ',':
@@ -71,12 +71,12 @@ func (l *Lexer) NextToken() *token.Token {
 	case '}':
 		t = createToken(token.RBRACE, l.char)
 	case '!':
-    if l.peakChar() == '=' {
-      t = &token.Token{Type: token.NEQ, Literal: "!="}
-      l.readChar()
-    } else {
-		  t = createToken(token.BANG, l.char)
-    }
+		if l.peakChar() == '=' {
+			t = &token.Token{Type: token.NEQ, Literal: "!="}
+			l.readChar()
+		} else {
+			t = createToken(token.BANG, l.char)
+		}
 	case '-':
 		t = createToken(token.MINUS, l.char)
 	case '/':
